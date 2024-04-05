@@ -327,23 +327,16 @@
                                                     </li>
                                                 </ul>
                                             </li>
-                                            <li class="dropdown-holder"><a href="blog-left-sidebar.html">Profile</a>
+                                            <li class="dropdown-holder">
+                                                <a href="{% url 'core:signup' %}">Profile</a>
                                                 <ul class="hb-dropdown">
-                                                    {% comment %} <li ><a href="blog-left-sidebar.html">Login</a> {% endcomment %}
-                                                        <li class="dropdown-holder">
-                                                            <a href="{% url 'core:userlogin' %}">Login</a>
-                                                        </li>  
-                                                        
-                                                    </li>
-                                                    
-                                                    {% comment %} <li ><a href="blog-gallery-format.html">Signup</a> {% endcomment %}
-                                                        <li class="dropdown-holder">
-                                                            <a href="{% url 'core:signup' %}">Signup</a>
-                                                        </li> 
-                                                    </li>
+                                                    {% if user.is_authenticated %}
+                                                        <li><a href="{% url 'core:logout' %}">Logout</a></li>
+                                                    {% else %}
+                                                        <li><a href="{% url 'core:userlogin' %}">Login</a></li>
+                                                        <li><a href="{% url 'core:signup' %}">Signup</a></li>
+                                                    {% endif %}
                                                 </ul>
-                                            </li>
-                                            
                                             </li>
                                            
                                             <li><a href="shop-left-sidebar.html">Smartwatch</a></li>

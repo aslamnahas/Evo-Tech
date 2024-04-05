@@ -1,14 +1,14 @@
+# views.py
+
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from .forms import NewUserForm , LoginForm
+from django.contrib.auth import authenticate, login, logout
+from .forms import NewUserForm, LoginForm
 
-
-def index(request):
-    return render(request, "core/index.html")
-
+def home(request):
+    return render(request, "core/home.html")
 
 ###############################################################################
-       # user signup#
+# user signup
 ###############################################################################
 
 def signup(request):
@@ -24,14 +24,13 @@ def signup(request):
             userss = authenticate(email=email, password=password)
             if userss is not None:
                 login(request, userss)
-                return redirect('core/index.html')  # Redirect to your home page
+                return redirect('core:home')  # Redirect to your home page
     else:
         form = NewUserForm()
     return render(request, 'core/registration.html', {'form': form})
 
-
 ###########################################################################
-        #user login#
+# user login
 ##########################################################################
 
 def login(request):
@@ -40,12 +39,25 @@ def login(request):
         if form.is_valid():
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-
-            user=authenticate(email=email,password=password)
+            user = authenticate(email=email, password=password)
             if user is not None:
-                login(request, user)
-                return redirect('core:index')
-            
+                login(request, user)  # Authenticate the user
+                return redirect('core:home')  # Redirect to the home page after login
     else:
-       form = LoginForm()
+        form = LoginForm()
     return render(request, 'core/userlogin.html', {'form': form})
+
+def custom_logout(request):
+    logout(request)
+    return redirect('core:home') 
+
+def google(request):
+
+      context = {
+        'provider': 'Google'  # You can dynamically determine the provider here
+     }
+      return render(request,'core/google.html',context)
+
+
+
+

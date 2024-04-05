@@ -39,3 +39,10 @@ def users(request):
      return render(request,'adminside/users.html',context)
 
     
+
+
+
+
+def category(request):
+    return render(request,'adminside/categories.html')
+    

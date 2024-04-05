@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     #app
     'core',
-    'user',
+    'admin_side',
 
     #alluath
     'allauth',
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     #providers
 
     'allauth.socialaccount.providers.google',  # <-- Corrected module name
-    'allauth.socialaccount.providers.facebook',  # <-- Corrected module name
+    # 'allauth.socialaccount.providers.facebook',  # <-- Corrected module name
 ]
 
 
@@ -137,7 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 SITE_ID = 1
-# LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
 
 # SOCIALACCOUNT_PROVIDERS = {
 #     'google': {

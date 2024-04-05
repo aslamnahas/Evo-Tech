@@ -31,7 +31,7 @@
             <div class="col-md-18">
                 <div class="custom-card">
                     <h1 class="text-center mb-4">Sign Up</h1>
-                    <form method="post">
+                    <form method="post" action="{% url 'core:home' %}">
                         {% csrf_token %}
                         
                         <div class="mb-3">
@@ -52,6 +52,9 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Sign Up</button>
                     </form>
+
+
+                    <p>Signup with. <a href="{% url 'core:google' %}">Google</a></p>
                     <!-- "I already have an account" option -->
                     <p class="text-center mt-3">Already have an account? <a href="{% url 'core:userlogin' %}">Login</a></p>
                 </div>

@@ -30,3 +30,20 @@ class Customer(AbstractUser):
     
 Customer._meta.get_field('groups').remote_field.related_name = 'customer_groups'
 Customer._meta.get_field('user_permissions').remote_field.related_name = 'customer_user_permissions'
+
+
+
+
+# #category
+
+
+# class Main_Category(models.Model):
+#     name = models.CharField(max_length=100)
+#     descriptions = models.TextField(default='Default Description')
+#     offer = models.PositiveIntegerField(default=0, null=True, blank=True)
+#     img = models.ImageField(upload_to='categories', default='null', null=True, blank=True)
+#     deleted = models.BooleanField(default=False)
+#     objects = models.Manager()
+
+#     def __str__(self):
+#         return str(self.name)

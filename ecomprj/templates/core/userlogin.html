@@ -15,16 +15,21 @@
             <div class="card">
                 <div class="card-header">Login</div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST"  action="{% url 'core:home' %}">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button type="submit" class="btn btn-primary">Login</button>
+                       
                     </form>
+                   
                     <div class="text-center mt-3">
+
+                        <p>Google login. <a href="{% url 'core:google' %}">Google</a></p>
                         <p>Don't have an account? Create an account. <a href="{% url 'core:signup' %}">signup</a></p>
                         <!-- Google Authentication Button -->
-                        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger">Login with Google</a>
+                        {% comment %} <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger">Login with Google</a> {% endcomment %}
                     </div>
+                    
                 </div>
             </div>
         </div>
