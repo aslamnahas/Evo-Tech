@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Main Category</title>
+</head>
+<body>
+    <h1>Add Main Category</h1>
+    <form method="post" action="{% url 'categories' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="main_category_name">Main Category Name:</label><br>
+        <input type="text" id="main_category_name" name="main_category_name" required><br>
+        
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" required></textarea><br>
+        
+        <label for="offer">Offer:</label><br>
+        <input type="text" id="offer" name="offer" required><br>
+        
+        <label for="image">Image:</label><br>
+        <input type="file" id="image" name="image" accept="image/*" required><br>
+        
+        <label for="delete">Delete:</label><br>
+        <input type="checkbox" id="delete" name="delete"><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

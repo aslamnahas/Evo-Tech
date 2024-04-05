@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from core.models import Customer
+from core.models import Main_Category
 
 def admin_login(request):
     if request.method == 'POST':
@@ -40,9 +41,32 @@ def users(request):
 
     
 
+def main_category(request):
+    data = Main_Category.objects.all().order_by('id')
+    return render(request, "adminside/categories.html", {"data": data})
 
-
-
-def category(request):
-    return render(request,'adminside/categories.html')
-    
+def add_main_category(request):
+    if request.method == 'POST':
+        main_category_name = request.POST.get('main_category_name')
+        description = request.POST.get('description')
+        offer = request.POST.get('offer')
+        image = request.FILES.get('image')
+        delete = request.POST.get('delete', False) == 'True'
+        
+        # Check if the category name already exists
+        if Main_Category.objects.filter(name=main_category_name).exists():
+            messages.error(request, "Category already exists.")
+            return redirect('adminside:add_categories')  # Redirect to the add_main_category page
+            
+        # Save data to the database
+        main_category = Main_Category(
+            name=main_category_name,
+            descriptions=description,
+            offer=offer,
+            img=image,
+            deleted=delete
+        )
+        main_category.save()
+        messages.success(request, "Category added successfully.")
+        return redirect('adminside:categories')  # Redirect to the main_category page
+    return render(request, 'adminside/add_categories.html')
