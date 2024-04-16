@@ -328,19 +328,24 @@
                                                 </ul>
                                             </li>
                                             <li class="dropdown-holder">
-                                                <a href="{% url 'core:signup' %}">Profile</a>
+                                                
+                                                    
+                                              
+                                                    <a href="{% url 'core:signup' %}">Profile</a>
+                                                
                                                 <ul class="hb-dropdown">
-                                                    {% if user.is_authenticated %}
+                                                   
                                                         <li><a href="{% url 'core:logout' %}">Logout</a></li>
-                                                    {% else %}
+                                                  
                                                         <li><a href="{% url 'core:userlogin' %}">Login</a></li>
                                                         <li><a href="{% url 'core:signup' %}">Signup</a></li>
-                                                    {% endif %}
+                                                 
                                                 </ul>
                                             </li>
+                                            
                                            
-                                            <li><a href="shop-left-sidebar.html">Smartwatch</a></li>
-                                            <li><a href="shop-left-sidebar.html">Accessories</a></li>
+                                            <li><a href="{% url 'core:user_categories' %}">Categories</a></li>
+                                            <li><a href="shop-left-sidebar.html">Brands</a></li>
                                         </ul>
                                     </nav>
                                 </div>

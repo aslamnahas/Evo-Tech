@@ -23,11 +23,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 
-
-
     path('',include("core.urls")),
-    path('adminuser',include('admin_side.urls')),
-    path('accounts/',include('allauth.urls')),
+    path('adminn/',include('admin_side.urls')),
+    path('accounts',include('allauth.urls')),
 ]
 
 if settings.DEBUG:

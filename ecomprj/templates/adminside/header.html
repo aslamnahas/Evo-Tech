@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+    <title>Evo Cart </title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'adminside/assets/css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'adminside/assets/css/font-awesome.min.css' %}">
@@ -139,19 +139,19 @@
                     <ul>
                         <li class="menu-title">Main</li>
                         <li class="active">
-                            <a href="{% url 'dashboard' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                            <a href="{% url 'adminside:dashboard' %}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                         </li>
 						<li>
-                            <a href="{% url 'users' %}"><i class="fa fa-user-md"></i> <span>Users </span></a>
+                            <a href="{% url 'adminside:users' %}"><i class="fa fa-user-md"></i> <span>Users </span></a>
                         </li>
                         <li>
-                            <a href="{% url 'categories' %}"><i class="fa fa-wheelchair"></i> <span>Category</span></a>
+                            <a href="{% url 'adminside:categories' %}"><i class="fa fa-wheelchair"></i> <span>Category</span></a>
                         </li>
                         <li>
-                            <a href="appointments.html"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
+                            <a href="{% url 'adminside:products' %}"><i class="fa fa-calendar"></i> <span>Products</span></a>
                         </li>
                         <li>
-                            <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>Doctor Schedule</span></a>
+                            <a href="schedule.html"><i class="fa fa-calendar-check-o"></i> <span>Brand</span></a>
                         </li>
                        
 						

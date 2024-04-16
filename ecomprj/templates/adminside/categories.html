@@ -1,13 +1,6 @@
-
 {% extends 'adminside/header.html' %}
 
-
-
-{% load static %}
-{% block content%}
-
-
-
+{% block content %}
 <div class="page-wrapper">
     <div class="content">
         <div class="row">
@@ -15,71 +8,64 @@
                 <h4 class="page-title">Category</h4>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-20">
-                <a href="{% url 'add_main_category' %}" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Add Category</a>
+                <a href="{% url 'adminside:add_main_category' %}" class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Add Category</a>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-border table-striped custom-table datatable mb-0">
+                    <table class="table table-bordered table-striped custom-table datatable mb-0">
                         <thead>
                             <tr>
-                                <th>Category</th>
-
-                                <th>Image</th>
-                               
-                                
-                                <th>Descrption</th>
-                                <th>Category Offer</th>
-                                <th>Status</th>
-                                <th class="text-right">Action</th>
+                                <th class="text-center">Active</th>
+                                <th class="text-center">Main Category</th>
+                                <th class="text-center">Image</th>
+                                <th class="text-center">Description</th>
+                                <th class="text-center">Offer</th>
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>
                             </tr>
-
-                            
-
                         </thead>
                         <tbody>
-                           
-
-
-                               
-                                {% comment %} <td>{{user.username}}</td> {% endcomment %}
-                                {% comment %} <td>{{user.email}}</td> {% endcomment %}
-
-
-                               
-                              
-                            
-                                    </div>
+                            {% for main_category in data %}
+                            <tr>
+                                <td class="text-center">
+                                    {% if main_category.deleted %}
+                                        <span class="badge badge-pill badge-danger">Inactive</span>
+                                    {% else %}
+                                        <span class="badge badge-pill badge-success">Active</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">{{ main_category.name }}</td>
+                                <td class="text-center">
+                                    {% if main_category.img %}
+                                        <img src="{{ main_category.img.url }}" alt="Image" style="width: 100px; height: auto;">
+                                    {% else %}
+                                        <p>No image available</p>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">{{ main_category.descriptions }}</td>
+                                <td class="text-center">{{ main_category.offer }}</td>
+                                <td class="text-center">
+                                    <a href="{% url 'adminside:update_main_category' main_category.id %}" class="btn btn-success">Edit</a>
+                                </td>
+                                <td class="text-center">
+                                    <a href="{% url 'adminside:soft_delete_category' main_category.id %}" class="btn btn-danger">
+                                        {% if main_category.deleted %}
+                                            Activate
+                                        {% else %}
+                                            Deactivate
+                                        {% endif %}
+                                    </a>
                                 </td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-</div>
-<div class="sidebar-overlay" data-reff=""></div>
-<script src="{% static 'adminside/assets/js/jquery-3.2.1.min.js' %}"></script>
-<script src="{% static 'adminside/assets/js/popper.min.js' %}"></script>
-<script src="{% static 'adminside/assets/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'adminside/assets/js/jquery.slimscroll.js' %}"></script>
-<script src="{% static 'adminside/assets/js/select2.min.js' %}"></script>
-<script src="{% static 'adminside/assets/js/jquery.dataTables.min.js' %}"></script>              
-<script src="{% static 'adminside/assets/js/dataTables.bootstrap4.min.js' %}"></script>
-<script src="{% static 'adminside/assets/js/moment.min.js' %}"></script>
-<script src="{% static 'adminside/assets/js/bootstrap-datetimepicker.min.js' %}"></script>
-<script src="{% static 'adminside/assets/js/app.js' %}"></script>
-</body>
 
-
-<!-- patients23:19-->
-</html>
-
-      
-
-
-{% endblock content %}
+{% endblock %}

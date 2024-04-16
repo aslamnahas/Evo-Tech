@@ -18,6 +18,8 @@ class Customer(AbstractUser):
     referral_code      =   models.CharField(max_length=100,null=True, unique=True)
     referral_amount    =   models.IntegerField(default=0)
     date_joined = models.DateTimeField(default=timezone.now)  # New field for registration date
+    is_blocked = models.BooleanField(default=False)  # New field to represent user block status
+
 
     wallet_bal         =   models.DecimalField(max_digits=100, decimal_places=2, default=0.00)
 
@@ -34,7 +36,7 @@ Customer._meta.get_field('user_permissions').remote_field.related_name = 'custom
 
 
 
-# #category
+# #category--------------------------------------------------
 
 class Main_Category(models.Model):
     name = models.CharField(max_length=100)
@@ -46,3 +48,27 @@ class Main_Category(models.Model):
 
     def __str__(self):
         return str(self.name)
+    
+
+
+# product====================================================================
+
+
+
+class Product(models.Model):
+    main_category = models.ForeignKey(Main_Category, on_delete=models.CASCADE)
+    # brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
+    model = models.CharField(max_length=100)
+    description = models.TextField()
+    color = models.CharField(max_length=10)
+    display_size = models.IntegerField()
+    camera = models.CharField(max_length=20, null=True, blank=True)
+    network = models.BooleanField()
+    smart = models.BooleanField()
+    battery = models.IntegerField(null=True, blank=True)
+    image = models.ImageField(upload_to='products',
+                              default='default_image.jpg')
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.model

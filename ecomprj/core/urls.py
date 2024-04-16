@@ -9,6 +9,8 @@ urlpatterns = [
     path('login/', views.login, name='userlogin'), 
     path('google/',views.google, name='google'),
     path('logout/', views.custom_logout, name='logout'),
+
+    path('categories/',views.user_category_view, name='user_categories'),
    
   
 ]

@@ -3,9 +3,20 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import NewUserForm, LoginForm
+from core.models import Main_Category
+
+
+
+
+
+
 
 def home(request):
+    # signup(request)
     return render(request, "core/home.html")
+
+
+
 
 ###############################################################################
 # user signup
@@ -28,6 +39,9 @@ def signup(request):
     else:
         form = NewUserForm()
     return render(request, 'core/registration.html', {'form': form})
+
+ 
+
 
 ###########################################################################
 # user login
@@ -61,3 +75,6 @@ def google(request):
 
 
 
+def user_category_view(request):
+    categories = Main_Category.objects.filter(deleted=False)  # Fetch active categories
+    return render(request, 'core/user_categories.html', {'categories': categories})
